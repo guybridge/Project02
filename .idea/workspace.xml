@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26c495ff-233e-4ceb-8b62-2d02ae2da1d4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LeagueManager.java" afterPath="$PROJECT_DIR$/src/LeagueManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Organiser.java" afterPath="$PROJECT_DIR$/src/Organiser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamtreehouse/model/Team.java" afterPath="$PROJECT_DIR$/src/com/teamtreehouse/model/Team.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamtreehouse/model/Teams.java" afterPath="$PROJECT_DIR$/src/com/teamtreehouse/model/Teams.java" />
     </list>
     <ignored path="Soccer League Organizer in Android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,11 +40,11 @@
       <file leaf-file-name="Organiser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Organiser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="109" column="35" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
+            <state relative-caret-position="300">
+              <caret line="157" column="25" selection-start-line="157" selection-start-column="25" selection-end-line="157" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1470539890380" expanded="true" signature="3281:3646" ph="..." />
+                <marker date="1470550063568" expanded="true" signature="2861:3226" ph="..." />
               </folding>
             </state>
           </provider>
@@ -54,14 +53,16 @@
       <file leaf-file-name="Teams.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/teamtreehouse/model/Teams.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#200#201#0" expanded="true" />
-                <element signature="e#241#242#0" expanded="true" />
-                <element signature="e#283#284#0" expanded="true" />
-                <element signature="e#314#315#0" expanded="true" />
+                <element signature="e#201#202#0" expanded="true" />
+                <element signature="e#243#244#0" expanded="true" />
+                <element signature="e#285#286#0" expanded="true" />
+                <element signature="e#317#318#0" expanded="true" />
+                <element signature="e#357#358#0" expanded="true" />
+                <element signature="e#386#387#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,8 +71,8 @@
       <file leaf-file-name="Team.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/teamtreehouse/model/Team.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+            <state relative-caret-position="540">
+              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#509#510#0" expanded="true" />
@@ -109,8 +110,8 @@
         <option value="$PROJECT_DIR$/src/com/teamtreehouse/model/Players.java" />
         <option value="$PROJECT_DIR$/src/com/teamtreehouse/model/Organiser.java" />
         <option value="$PROJECT_DIR$/src/LeagueManager.java" />
-        <option value="$PROJECT_DIR$/src/com/teamtreehouse/model/Teams.java" />
         <option value="$PROJECT_DIR$/src/com/teamtreehouse/model/Team.java" />
+        <option value="$PROJECT_DIR$/src/com/teamtreehouse/model/Teams.java" />
         <option value="$PROJECT_DIR$/src/Organiser.java" />
       </list>
     </option>
@@ -552,7 +553,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1470539890380" expanded="true" signature="3281:3646" ph="..." />
+            <marker date="1470550063568" expanded="true" signature="2861:3226" ph="..." />
           </folding>
         </state>
       </provider>
@@ -602,8 +603,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/teamtreehouse/model/Team.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+        <state relative-caret-position="540">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#509#510#0" expanded="true" />
@@ -618,25 +619,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/teamtreehouse/model/Teams.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#200#201#0" expanded="true" />
-            <element signature="e#241#242#0" expanded="true" />
-            <element signature="e#283#284#0" expanded="true" />
-            <element signature="e#314#315#0" expanded="true" />
+            <element signature="e#201#202#0" expanded="true" />
+            <element signature="e#243#244#0" expanded="true" />
+            <element signature="e#285#286#0" expanded="true" />
+            <element signature="e#317#318#0" expanded="true" />
+            <element signature="e#357#358#0" expanded="true" />
+            <element signature="e#386#387#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Organiser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="109" column="35" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
+        <state relative-caret-position="300">
+          <caret line="157" column="25" selection-start-line="157" selection-start-column="25" selection-end-line="157" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1470539890380" expanded="true" signature="3281:3646" ph="..." />
+            <marker date="1470550063568" expanded="true" signature="2861:3226" ph="..." />
           </folding>
         </state>
       </provider>

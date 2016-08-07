@@ -8,19 +8,22 @@ import java.util.List;
  */
 public class Teams
 {
-    private List<Team> teams;
+    private List<Team> mTeams;
 
     public Teams()
     {
-        teams = new ArrayList<>();
+        mTeams = new ArrayList<>();
     }
 
     public void addTeam(Team team)
     {
-        teams.add(team);
+        mTeams.add(team);
     }
 
-
+    public List<Team> getTeams()
+    {
+        return mTeams;
+    }
 
 
 }

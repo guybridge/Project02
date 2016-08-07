@@ -1,6 +1,4 @@
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import com.teamtreehouse.model.Player;
-import com.teamtreehouse.model.Players;
 import com.teamtreehouse.model.Team;
 import com.teamtreehouse.model.Teams;
 
@@ -67,6 +65,7 @@ public class Organiser
         {
             try
             {
+                // Prompt the user for the choice
                 choice = promptAction();
 
                 switch (choice)
@@ -105,9 +104,88 @@ public class Organiser
 
     private void addPlayerToTeam()
     {
-        // Show list of players
+        // Get a listed of sorted players
+        Set<Player> sortedPlayers = sortPlayers();
 
-        // TODO: Create sort method
+        System.out.println("Which player do you want to add? ");
+        System.out.println("");
+
+        // Loop through the list and display
+        for (Player player : sortedPlayers)
+        {
+            System.out.println(
+                    "Name: " + player.getFirstName() + " " + player.getLastName() + "\n"
+                            + "Height: " + player.getHeightInInches() + "\" " + "\n"
+                            + "Previous experience: " + player.isPreviousExperience() + "\n");
+        }
+
+        // Get the player selection
+        String playerSelection = System.console().readLine("Player selection: ");
+
+        // Loop through the players array to check which one we chose
+        int playerIndex = 0;
+        for (int i = 0; i < mPlayers.length; i++)
+        {
+            String playerFullName = mPlayers[i].getFirstName() + " "  + mPlayers[i].getLastName();
+            if (playerFullName.equals(playerSelection))
+            {
+                // Now add the found player to the Team
+                System.out.println("!!!###### FOUND PLAYER at index: " + i);
+                // Record the player index
+                playerIndex = i;
+            }
+        }
+
+        System.out.println("Now choose what team to add " + playerSelection + " to.");
+        System.out.println("### TEAM LIST ####");
+        System.out.println("");
+
+
+        // Sort the teams
+        Set<Team> sortedTeams = new TreeSet<>(new Comparator<Team>() {
+            @Override
+            public int compare(Team team1, Team team2)
+            {
+                if(team1.equals(team2))
+                {
+                    return 0;
+                }
+                return team1.getTeamName().compareTo(team2.getTeamName());
+            }
+        });
+
+
+        // Sort the teams
+        for (Team team : mTeams.getTeams())
+        {
+            sortedTeams.add(team);
+        }
+
+
+
+
+
+
+    }
+
+
+    // Displays a list of teams
+    private void displayTeams()
+    {
+        // Show existing teams
+        for (Team teams : mTeams.getTeams())
+        {
+            System.out.println("Team name: " + teams.getTeamName());
+            System.out.println("Coach: " + teams.getCoachName());
+            System.out.println("");
+
+        }
+    }
+
+
+    // SOr the players alphabetically
+    private Set<Player> sortPlayers() {
+
         Set<Player> sortedPlayers = new TreeSet<>(new Comparator<Player>() {
             @Override
             public int compare(Player player1, Player player2)
@@ -125,15 +203,10 @@ public class Organiser
         {
             sortedPlayers.add(player);
         }
-
-        for (Player player : sortedPlayers)
-        {
-            System.out.println(
-                    "Name: " + player.getFirstName() + " " + player.getLastName() + "\n"
-                            + "Height: " + player.getHeightInInches() + "\" " + "\n"
-                            + "Previous experience: " + player.isPreviousExperience() + "\n");
-        }
+        return sortedPlayers;
     }
+
+
 
     private void createTeam()
     {
@@ -144,8 +217,11 @@ public class Organiser
         mTeams.addTeam(team);
 
         System.out.println("Team " + teamName + " added with coach " + coachName);
-
-        // TODO: add a class called Teams and add this to the teams class
+        System.out.println("");
+        System.out.println("### Current teams ####");
+        System.out.println("");
 
     }
+
+
 }
