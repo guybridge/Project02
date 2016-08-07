@@ -1,5 +1,8 @@
 package com.teamtreehouse.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by guyb on 4/08/16.
  */
@@ -10,6 +13,7 @@ public class Team
     private String mTeamName;
     private String mCoachName;
     public static final int TEAM_MAX_PLAYERS = 11;
+    private List<Player> mPlayer = new ArrayList<>();
 
     // Constructor
     public Team(String teamName, String coachName)
@@ -17,6 +21,21 @@ public class Team
         mTeamName = teamName;
         mCoachName = coachName;
 
+    }
+
+    public String getTeamName()
+    {
+        return mTeamName;
+    }
+
+    public String getCoachName()
+    {
+        return mCoachName;
+    }
+
+    public void addPlayer(Player player)
+    {
+        mPlayer.add(player);
     }
 
 
