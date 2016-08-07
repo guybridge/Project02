@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="26c495ff-233e-4ceb-8b62-2d02ae2da1d4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Organiser.java" afterPath="$PROJECT_DIR$/src/Organiser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamtreehouse/model/Teams.java" afterPath="$PROJECT_DIR$/src/com/teamtreehouse/model/Teams.java" />
     </list>
     <ignored path="Soccer League Organizer in Android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,11 +39,11 @@
       <file leaf-file-name="Organiser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Organiser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="157" column="25" selection-start-line="157" selection-start-column="25" selection-end-line="157" selection-end-column="25" />
+            <state relative-caret-position="534">
+              <caret line="191" column="39" selection-start-line="191" selection-start-column="39" selection-end-line="191" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1470550063568" expanded="true" signature="2861:3226" ph="..." />
+                <marker date="1470614060598" expanded="true" signature="2861:3226" ph="..." />
               </folding>
             </state>
           </provider>
@@ -553,7 +552,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1470550063568" expanded="true" signature="2861:3226" ph="..." />
+            <marker date="1470614060598" expanded="true" signature="2861:3226" ph="..." />
           </folding>
         </state>
       </provider>
@@ -635,11 +634,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Organiser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="157" column="25" selection-start-line="157" selection-start-column="25" selection-end-line="157" selection-end-column="25" />
+        <state relative-caret-position="534">
+          <caret line="191" column="39" selection-start-line="191" selection-start-column="39" selection-end-line="191" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1470550063568" expanded="true" signature="2861:3226" ph="..." />
+            <marker date="1470614060598" expanded="true" signature="2861:3226" ph="..." />
           </folding>
         </state>
       </provider>

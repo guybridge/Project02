@@ -154,15 +154,48 @@ public class Organiser
             }
         });
 
-
-        // Sort the teams
         for (Team team : mTeams.getTeams())
         {
             sortedTeams.add(team);
         }
 
+        // Diplay the teams
+
+        for (Team team : sortedTeams)
+        {
+            System.out.println("Team: " + team.getTeamName());
+            System.out.println("Coach: " + team.getCoachName());
+            System.out.println("");
+        }
+
+        // Get a team selection
+        String teamSelection = System.console().readLine("Select the team you want to add " + playerSelection + " to #");
+        // Loop through the teams list
+        int teamIndex = 0;
+        for (int i2 = 0; i2 < mTeams.getTeams().size(); i2++)
+        {
+
+            if(teamSelection.equals(mTeams.getTeams().get(i2)))
+            {
+                System.out.println("Team found at position: " + teamIndex);
+                // Save location
+                teamIndex = i2;
+            }
 
 
+        }
+
+        // Now at the player to the team at that teams index
+       System.out.println("TEAM SIZE: " + mTeams.getTeams().size());
+       System.out.println("PLAYER SIZE: " + playerIndex);
+
+        mTeams.getTeams().get(teamIndex).addPlayer(mPlayers[playerIndex]);
+
+
+        System.out.println(
+                "Player: " + mPlayers[playerIndex].getFirstName()
+                + " " + mPlayers[playerIndex].getLastName()
+                + " added " + " to team " + mTeams.getTeams().get(teamIndex).getTeamName());
 
 
 
@@ -216,9 +249,8 @@ public class Organiser
         Team team = new Team(teamName, coachName);
         mTeams.addTeam(team);
 
-        System.out.println("Team " + teamName + " added with coach " + coachName);
         System.out.println("");
-        System.out.println("### Current teams ####");
+        System.out.println("Team " + teamName + " added with coach " + coachName);
         System.out.println("");
 
     }
