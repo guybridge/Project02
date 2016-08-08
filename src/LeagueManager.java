@@ -10,6 +10,11 @@ public class LeagueManager {
         Player[] players = Players.load();
         System.out.printf("There are currently %d registered players.%n", players.length);
 
+        System.out.println("");
+        System.out.println("##########################################");
+        System.out.println("###     L E A G U E  M A N A G E R     ###");
+        System.out.println("##########################################");
+
         Organiser organiser = new Organiser(players);
 
         organiser.run();

@@ -1,6 +1,7 @@
 import com.teamtreehouse.model.Player;
 import com.teamtreehouse.model.Team;
 import com.teamtreehouse.model.Teams;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.io.BufferedReader;
 import java.io.Console;
@@ -143,7 +144,7 @@ public class Organiser
                     }
 
                 }
-                
+
                 // Now display for the given team
                 System.out.println("Players with previous experience: " + experiencedCount);
                 System.out.println("Players without previous " + inexperiencedCount);
@@ -213,9 +214,13 @@ public class Organiser
       return teamIndex;
     }
 
+
+    // TODO: Report based on height
     private void heightReport()
     {
-        System.out.println("### Team report ###");
+        System.out.println("#############################");
+        System.out.println("###  TEAM HEIGHT REPORT   ###");
+        System.out.println("#############################");
         System.out.println("");
 
         showTeams();
@@ -226,28 +231,33 @@ public class Organiser
         int teamIndex = getTeamIndex(teamSelection);
 
 
-       Set<Player> sortedHeight = new TreeSet<>(new Comparator<Player>() {
-           @Override
-           public int compare(Player player1, Player player2)
-           {
-               return player1.getHeightInInches() - player2.getHeightInInches();
-           }
-       });
 
-        // Now display the players on that team ordered by height
+        Map<Integer, List<String>> map = new TreeMap<>();
+
+
         for (Player player : mTeams.getTeams().get(teamIndex).getPlayers())
         {
-            sortedHeight.add(player);
+
+            List<String> players = new ArrayList<>();
+            int height = player.getHeightInInches();
+            String firstname = player.getFirstName();
+            String lastname = player.getLastName();
+
+            players.add(firstname + " " + lastname);
+
+            map.put(height, players);
 
         }
 
-        for (Player player : sortedHeight)
-        {
-                System.out.println(
-                        "Name: " + player.getFirstName() + " " + player.getLastName() + "\n"
-                                + "Height: " + player.getHeightInInches() + "\" " + "\n"
-                                + "Previous experience: " + player.isPreviousExperience() + "\n");
-        }
+       for(Map.Entry<Integer, List<String>> entry : map.entrySet())
+       {
+           System.out.println("Height Group: " + entry.getKey());
+           for(String player : entry.getValue())
+           {
+               System.out.println("Player Name: " + player);
+           }
+       }
+
 
 
     }
@@ -262,7 +272,8 @@ public class Organiser
             String playerFullName = mPlayers[i].getFirstName() + " " + mPlayers[i].getLastName();
             if (playerFullName.equals(player)) {
                 // Now add the found player to the Team
-                System.out.println("!!!###### FOUND PLAYER at index: " + i);
+                System.out.println("");
+                System.out.println("###### FOUND PLAYER at index: " + i);
                 // Record the player index
                 playerIndex = i;
             }
