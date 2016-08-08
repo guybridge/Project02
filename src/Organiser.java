@@ -31,6 +31,7 @@ public class Organiser
         mMenu.put("create", "add a new team");
         mMenu.put("roster", "Show players on a team");
         mMenu.put("add", "Add a player to a team");
+        mMenu.put("balance", "League Balance Report");
         mMenu.put("remove", "Remove players from a team");
         mMenu.put("quit", "exit the program");
         mMenu.put("report", "Height report for specific team");
@@ -83,6 +84,9 @@ public class Organiser
                     case "roster":
                         displayTeamRoster();
                         break;
+                    case "balance":
+                        balanceReport();
+                        break;
                     case "report":
                         heightReport();
                         break;
@@ -105,8 +109,54 @@ public class Organiser
 
     }
 
+    private void balanceReport()
+    {
+            // Display each team in the league and show how many experienced players and inexperienced players on each team
+
+            System.out.println("#############################");
+            System.out.println("### League Balance Report ###");
+            System.out.println("#############################");
+
+            for (Team team : mTeams.getTeams())
+            {
+                // Display the team name
+                System.out.println("");
+                System.out.println("Team: " + team.getTeamName());
+                System.out.println("Coach: " + team.getCoachName());
+
+                // Check experienced players count and inexperienced players count
+
+                // For each player on the team increment the count
+                int inexperiencedCount = 0;
+                int experiencedCount = 0;
+
+                for (Player player : team.getPlayers())
+                {
+                    if (player.isPreviousExperience())
+                    {
+                        // The player has experience, increment
+                        experiencedCount++;
+                    }
+                    else // Else increment the inexperienced Count
+                    {
+                        inexperiencedCount++;
+                    }
+
+                }
+                
+                // Now display for the given team
+                System.out.println("Players with previous experience: " + experiencedCount);
+                System.out.println("Players without previous " + inexperiencedCount);
+                System.out.println("");
+
+            }
+    }
+
     private void displayTeamRoster()
     {
+            System.out.println("#############################");
+            System.out.println("###     TEAM ROSTERS      ###");
+            System.out.println("#############################");
             System.out.println("Select your team");
 
             showTeams();
@@ -224,6 +274,10 @@ public class Organiser
     private void removePlayerFromTeam()
     {
 
+        System.out.println("#############################");
+        System.out.println("###     REMOVE PLAYER     ###");
+        System.out.println("#############################");
+
         System.out.println("Which player do you want to remove? ");
         System.out.println("");
 
@@ -236,7 +290,9 @@ public class Organiser
         int playerIndex = getPlayerIndex(playerSelection);
 
         System.out.println("Now choose what team to remove " + playerSelection + " from.");
-        System.out.println("### TEAM LIST ####");
+        System.out.println("#############################");
+        System.out.println("###        TEAM LIST      ###");
+        System.out.println("#############################");
         System.out.println("");
 
         showTeams();
@@ -273,6 +329,9 @@ public class Organiser
     private void addPlayerToTeam()
     {
 
+        System.out.println("#############################");
+        System.out.println("###     ADD PLAYER        ###");
+        System.out.println("#############################");
         System.out.println("Which player do you want to add? ");
         System.out.println("");
 
@@ -356,6 +415,11 @@ public class Organiser
 
     private void createTeam()
     {
+
+        System.out.println("#############################");
+        System.out.println("###   CREATE NEW TEAM     ###");
+        System.out.println("#############################");
+
         Console console = System.console();
         String teamName = console.readLine("Team name:");
         String coachName = console.readLine("Coach name:");
