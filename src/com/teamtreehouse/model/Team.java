@@ -38,5 +38,10 @@ public class Team
         mPlayer.add(player);
     }
 
+    public void removePlayer(Player player)
+    {
+        mPlayer.remove(player);
+    }
+
 
 }

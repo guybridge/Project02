@@ -99,6 +99,76 @@ public class Organiser
 
     private void removePlayerFromTeam()
     {
+        // Get a listed of sorted players
+        Set<Player> sortedPlayers = sortPlayers();
+        System.out.println("Which player do you want to remove? ");
+        System.out.println("");
+
+        // Loop through the list and display
+        for (Player player : sortedPlayers)
+        {
+            System.out.println(
+                    "Name: " + player.getFirstName() + " " + player.getLastName() + "\n"
+                            + "Height: " + player.getHeightInInches() + "\" " + "\n"
+                            + "Previous experience: " + player.isPreviousExperience() + "\n");
+        }
+
+        // Get the player selection
+        String playerSelection = System.console().readLine("Player selection: ");
+
+        // Loop through the players array to check which one we chose
+        int playerIndex = 0;
+        for (int i = 0; i < mPlayers.length; i++)
+        {
+            String playerFullName = mPlayers[i].getFirstName() + " "  + mPlayers[i].getLastName();
+            if (playerFullName.equals(playerSelection))
+            {
+                // Now add the found player to the Team
+                System.out.println("!!!###### FOUND PLAYER at index: " + i);
+                // Record the player index
+                playerIndex = i;
+            }
+        }
+
+        System.out.println("Now choose what team to remove " + playerSelection + " from.");
+        System.out.println("### TEAM LIST ####");
+        System.out.println("");
+
+        // Get an ordered list of teams
+        Set<Team> sortedTeams = sortTeams();
+
+        // Display the teams
+
+        for (Team team : sortedTeams)
+        {
+            System.out.println("Team: " + team.getTeamName());
+            System.out.println("Coach: " + team.getCoachName());
+            System.out.println("");
+        }
+
+
+        // Get a team selection
+        String teamSelection = System.console().readLine("Select the team you want to remove " + playerSelection + " from #");
+        // Loop through the teams list
+        int teamIndex = 0;
+        for (int i2 = 0; i2 < mTeams.getTeams().size(); i2++)
+        {
+            if(teamSelection.equals(mTeams.getTeams().get(i2)))
+            {
+                System.out.println("Team found at position: " + teamIndex);
+                // Save location
+                teamIndex = i2;
+            }
+        }
+
+        // Now remove the player to the team at that teams index
+        mTeams.getTeams().get(teamIndex).removePlayer(mPlayers[playerIndex]);
+
+
+        System.out.println(
+                "Player: " + mPlayers[playerIndex].getFirstName()
+                        + " " + mPlayers[playerIndex].getLastName()
+                        + " removed " + " from team " + mTeams.getTeams().get(teamIndex).getTeamName());
 
     }
 
@@ -140,26 +210,10 @@ public class Organiser
         System.out.println("### TEAM LIST ####");
         System.out.println("");
 
+        // Get an ordered list of teams
+        Set<Team> sortedTeams = sortTeams();
 
-        // Sort the teams
-        Set<Team> sortedTeams = new TreeSet<>(new Comparator<Team>() {
-            @Override
-            public int compare(Team team1, Team team2)
-            {
-                if(team1.equals(team2))
-                {
-                    return 0;
-                }
-                return team1.getTeamName().compareTo(team2.getTeamName());
-            }
-        });
-
-        for (Team team : mTeams.getTeams())
-        {
-            sortedTeams.add(team);
-        }
-
-        // Diplay the teams
+        // Display the teams
 
         for (Team team : sortedTeams)
         {
@@ -186,11 +240,7 @@ public class Organiser
         }
 
         // Now at the player to the team at that teams index
-       System.out.println("TEAM SIZE: " + mTeams.getTeams().size());
-       System.out.println("PLAYER SIZE: " + playerIndex);
-
         mTeams.getTeams().get(teamIndex).addPlayer(mPlayers[playerIndex]);
-
 
         System.out.println(
                 "Player: " + mPlayers[playerIndex].getFirstName()
@@ -201,22 +251,29 @@ public class Organiser
 
     }
 
+    private Set<Team> sortTeams() {
+        // Sort the teams
+        Set<Team> sortedTeams = new TreeSet<>(new Comparator<Team>() {
+            @Override
+            public int compare(Team team1, Team team2)
+            {
+                if(team1.equals(team2))
+                {
+                    return 0;
+                }
+                return team1.getTeamName().compareTo(team2.getTeamName());
+            }
+        });
 
-    // Displays a list of teams
-    private void displayTeams()
-    {
-        // Show existing teams
-        for (Team teams : mTeams.getTeams())
+        for (Team team : mTeams.getTeams())
         {
-            System.out.println("Team name: " + teams.getTeamName());
-            System.out.println("Coach: " + teams.getCoachName());
-            System.out.println("");
-
+            sortedTeams.add(team);
         }
+        return sortedTeams;
     }
 
 
-    // SOr the players alphabetically
+    // Sort the players alphabetically
     private Set<Player> sortPlayers() {
 
         Set<Player> sortedPlayers = new TreeSet<>(new Comparator<Player>() {
