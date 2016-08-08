@@ -29,9 +29,11 @@ public class Organiser
 
         // Build the menu items
         mMenu.put("create", "add a new team");
+        mMenu.put("roster", "Show players on a team");
         mMenu.put("add", "Add a player to a team");
         mMenu.put("remove", "Remove players from a team");
         mMenu.put("quit", "exit the program");
+        mMenu.put("report", "Height report for specific team");
 
     }
 
@@ -78,6 +80,12 @@ public class Organiser
                         // Add a player to a team
                         addPlayerToTeam();
                         break;
+                    case "roster":
+                        displayTeamRoster();
+                        break;
+                    case "report":
+                        heightReport();
+                        break;
                     case "remove":
                         removePlayerFromTeam();
                         break;
@@ -97,47 +105,37 @@ public class Organiser
 
     }
 
-    private void removePlayerFromTeam()
+    private void displayTeamRoster()
     {
-        // Get a listed of sorted players
-        Set<Player> sortedPlayers = sortPlayers();
-        System.out.println("Which player do you want to remove? ");
-        System.out.println("");
+            System.out.println("Select your team");
 
-        // Loop through the list and display
-        for (Player player : sortedPlayers)
-        {
-            System.out.println(
-                    "Name: " + player.getFirstName() + " " + player.getLastName() + "\n"
-                            + "Height: " + player.getHeightInInches() + "\" " + "\n"
-                            + "Previous experience: " + player.isPreviousExperience() + "\n");
-        }
+            showTeams();
 
-        // Get the player selection
-        String playerSelection = System.console().readLine("Player selection: ");
+            String team = System.console().readLine("# ");
+            int index = getTeamIndex(team);
+            // Show the players on it
 
-        // Loop through the players array to check which one we chose
-        int playerIndex = 0;
-        for (int i = 0; i < mPlayers.length; i++)
-        {
-            String playerFullName = mPlayers[i].getFirstName() + " "  + mPlayers[i].getLastName();
-            if (playerFullName.equals(playerSelection))
+            System.out.println("Showing all players on " + mTeams.getTeams().get(index).getTeamName());
+            System.out.println("");
+
+            for (Player player : mTeams.getTeams().get(index).getPlayers())
             {
-                // Now add the found player to the Team
-                System.out.println("!!!###### FOUND PLAYER at index: " + i);
-                // Record the player index
-                playerIndex = i;
+                System.out.println(player.getFirstName() + " " + player.getLastName());
             }
-        }
 
-        System.out.println("Now choose what team to remove " + playerSelection + " from.");
-        System.out.println("### TEAM LIST ####");
-        System.out.println("");
+    }
 
+    // Displays team alphabetically
+    private void showTeams()
+    {
+        // Display a list of teams
         // Get an ordered list of teams
         Set<Team> sortedTeams = sortTeams();
 
-        // Display the teams
+        for (Team team : sortedTeams)
+        {
+            sortedTeams.add(team);
+        }
 
         for (Team team : sortedTeams)
         {
@@ -145,25 +143,111 @@ public class Organiser
             System.out.println("Coach: " + team.getCoachName());
             System.out.println("");
         }
+    }
 
+    private int getTeamIndex(String teamName)
+    {
+
+        // Loop through the teams list
+        int teamIndex = 0;
+        for (int i = 0; i < mTeams.getTeams().size(); i++)
+        {
+            if(teamName.equals(mTeams.getTeams().get(i).getTeamName()))
+            {
+                System.out.println("Team found at position: " + i);
+                // Save location
+                teamIndex = i;
+            }
+        }
+
+      return teamIndex;
+    }
+
+    private void heightReport()
+    {
+        System.out.println("### Team report ###");
+        System.out.println("");
+
+        showTeams();
+
+        // Get a team selection
+        String teamSelection = System.console().readLine("Select the team you want to do the height report on: ");
+        // Loop through the teams list
+        int teamIndex = getTeamIndex(teamSelection);
+
+
+       Set<Player> sortedHeight = new TreeSet<>(new Comparator<Player>() {
+           @Override
+           public int compare(Player player1, Player player2)
+           {
+               return player1.getHeightInInches() - player2.getHeightInInches();
+           }
+       });
+
+        // Now display the players on that team ordered by height
+        for (Player player : mTeams.getTeams().get(teamIndex).getPlayers())
+        {
+            sortedHeight.add(player);
+
+        }
+
+        for (Player player : sortedHeight)
+        {
+                System.out.println(
+                        "Name: " + player.getFirstName() + " " + player.getLastName() + "\n"
+                                + "Height: " + player.getHeightInInches() + "\" " + "\n"
+                                + "Previous experience: " + player.isPreviousExperience() + "\n");
+        }
+
+
+    }
+
+    private int getPlayerIndex(String player)
+    {
+
+        // Loop through the players array to check which one we chose
+        int playerIndex = 0;
+        for (int i = 0; i < mPlayers.length; i++)
+        {
+            String playerFullName = mPlayers[i].getFirstName() + " " + mPlayers[i].getLastName();
+            if (playerFullName.equals(player)) {
+                // Now add the found player to the Team
+                System.out.println("!!!###### FOUND PLAYER at index: " + i);
+                // Record the player index
+                playerIndex = i;
+            }
+        }
+
+        return playerIndex;
+    }
+
+    private void removePlayerFromTeam()
+    {
+
+        System.out.println("Which player do you want to remove? ");
+        System.out.println("");
+
+        showPlayers();
+
+        // Get the player selection
+        String playerSelection = System.console().readLine("Player selection: ");
+
+        // Loop through the players array to check which one we chose
+        int playerIndex = getPlayerIndex(playerSelection);
+
+        System.out.println("Now choose what team to remove " + playerSelection + " from.");
+        System.out.println("### TEAM LIST ####");
+        System.out.println("");
+
+        showTeams();
 
         // Get a team selection
         String teamSelection = System.console().readLine("Select the team you want to remove " + playerSelection + " from #");
         // Loop through the teams list
-        int teamIndex = 0;
-        for (int i2 = 0; i2 < mTeams.getTeams().size(); i2++)
-        {
-            if(teamSelection.equals(mTeams.getTeams().get(i2)))
-            {
-                System.out.println("Team found at position: " + teamIndex);
-                // Save location
-                teamIndex = i2;
-            }
-        }
+        int teamIndex = getTeamIndex(teamSelection);
 
         // Now remove the player to the team at that teams index
         mTeams.getTeams().get(teamIndex).removePlayer(mPlayers[playerIndex]);
-
 
         System.out.println(
                 "Player: " + mPlayers[playerIndex].getFirstName()
@@ -172,14 +256,10 @@ public class Organiser
 
     }
 
-    private void addPlayerToTeam()
+    private void showPlayers()
     {
         // Get a listed of sorted players
         Set<Player> sortedPlayers = sortPlayers();
-
-        System.out.println("Which player do you want to add? ");
-        System.out.println("");
-
         // Loop through the list and display
         for (Player player : sortedPlayers)
         {
@@ -188,56 +268,32 @@ public class Organiser
                             + "Height: " + player.getHeightInInches() + "\" " + "\n"
                             + "Previous experience: " + player.isPreviousExperience() + "\n");
         }
+    }
+
+    private void addPlayerToTeam()
+    {
+
+        System.out.println("Which player do you want to add? ");
+        System.out.println("");
+
+        showPlayers();
 
         // Get the player selection
         String playerSelection = System.console().readLine("Player selection: ");
 
         // Loop through the players array to check which one we chose
-        int playerIndex = 0;
-        for (int i = 0; i < mPlayers.length; i++)
-        {
-            String playerFullName = mPlayers[i].getFirstName() + " "  + mPlayers[i].getLastName();
-            if (playerFullName.equals(playerSelection))
-            {
-                // Now add the found player to the Team
-                System.out.println("!!!###### FOUND PLAYER at index: " + i);
-                // Record the player index
-                playerIndex = i;
-            }
-        }
+        int playerIndex = getPlayerIndex(playerSelection);
 
         System.out.println("Now choose what team to add " + playerSelection + " to.");
         System.out.println("### TEAM LIST ####");
         System.out.println("");
 
-        // Get an ordered list of teams
-        Set<Team> sortedTeams = sortTeams();
-
-        // Display the teams
-
-        for (Team team : sortedTeams)
-        {
-            System.out.println("Team: " + team.getTeamName());
-            System.out.println("Coach: " + team.getCoachName());
-            System.out.println("");
-        }
+        showTeams();
 
         // Get a team selection
         String teamSelection = System.console().readLine("Select the team you want to add " + playerSelection + " to #");
         // Loop through the teams list
-        int teamIndex = 0;
-        for (int i2 = 0; i2 < mTeams.getTeams().size(); i2++)
-        {
-
-            if(teamSelection.equals(mTeams.getTeams().get(i2)))
-            {
-                System.out.println("Team found at position: " + teamIndex);
-                // Save location
-                teamIndex = i2;
-            }
-
-
-        }
+        int teamIndex = getTeamIndex(teamSelection);
 
         // Now at the player to the team at that teams index
         mTeams.getTeams().get(teamIndex).addPlayer(mPlayers[playerIndex]);

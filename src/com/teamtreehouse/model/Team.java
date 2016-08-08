@@ -33,6 +33,11 @@ public class Team
         return mCoachName;
     }
 
+    public List<Player> getPlayers()
+    {
+        return mPlayer;
+    }
+
     public void addPlayer(Player player)
     {
         mPlayer.add(player);
