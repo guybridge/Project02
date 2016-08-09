@@ -48,7 +48,7 @@ public class Organiser
         for (Map.Entry<String, String> option: mMenu.entrySet())
         {
 
-            System.out.println(option.getKey() + "      :   " + option.getValue());
+            System.out.println(option.getKey() + "      -   " + option.getValue());
 
         }
 
